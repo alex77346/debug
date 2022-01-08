@@ -1,0 +1,85 @@
+{% extends "base.html" %} {% block title %}Add Player{% endblock %} 
+
+
+{% block header %}
+<main>
+	<section class="edit-section">
+		<div class="container container-large">
+			<div class="edit-wrapper">
+				<div class="edit-l">
+					<div class="edit-l-top">
+						<img src={{pic}} alt="">
+                    </div>
+                    <div class="edit-l-bottom">
+                        <img src="./static/images/img-3.png" alt="">
+                        <img src="./static/images/img-4.png" alt="">
+                        <img src="./static/images/img-5.png" alt="">
+
+                    </div>
+                </div>
+                <form method="POST" class="edit-r">
+                    <h3>Player {{number}}</h3>
+                    <h2> add your contact information</h2>
+
+                     <div class="input-block">
+                        <label for="email">Email</label>
+                        <input 
+                          type="email"
+                          class="input-control"
+                          id="email"
+                          name="email"
+                          placeholder=""
+                        />
+                    </div>
+
+                    <div class="input-block">
+                        <label for="twitter">Twitter</label>
+                        <input 
+                          type="text"
+                          class="input-control"
+                          id="twitter"
+                          name="twitter"
+                          placeholder=""
+                        />
+                    </div>
+
+                    <div class="input-block">
+                        <label for="telegram">Telegram</label>
+                        <input 
+                          type="text"
+                          class="input-control"
+                          id="telegram"
+                          name="telegram"
+                          placeholder=""
+                        />
+                    </div>
+
+                    <div class="input-block">
+                        <label for="facebook">Facebook</label>
+                        <input 
+                          type="text"
+                          class="input-control"
+                          id="facebook"
+                          name="facebook"
+                          placeholder=""
+                        />
+                    </div>
+
+                    <div class="input-block">
+                        <label for="wallet_address">Wallet Address</label>
+                        <input 
+                          type="hidden"
+                          class="input-control"
+                          id="wallet_address"
+                          name="wallet_address"
+                        />
+                        <text id="wall">{{wallet_address}}</text>
+                    </div>
+                    <button type="submit" onclick="prof()" class="red-button">save players info</button>
+                </form>
+            </div>
+        </div>
+        <script src="shorts/proverka.js"></script>
+    </section>
+</main>
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends "base.html" %} {% block title %}Login{% endblock %} 
+
+
+{% block header %}
+<main>
+	<section class="prize-section">
+		<div class="container">
+            <h3 align='center'>Connect your Wallet here!</h3>
+			<div align='center'>
+    <button id='loginButton' onclick="" class="red-button">
+      Login with MetaMask
+    </button>
+    <p id='userWallet' class='red'></p>
+  </div>
+  
+  <script>
+    window.userWalletAddress = null
+    const loginButton = document.getElementById('loginButton')
+    const userWallet = document.getElementById('userWallet')
+
+    function toggleButton() {
+      if (!window.ethereum) {
+        loginButton.innerText = 'MetaMask is not installed'
+        loginButton.classList.add('cursor-not-allowed')
+        return false
+      }
+      loginButton.addEventListener('click', loginWithMetaMask)
+    }
+    async function loginWithMetaMask() {
+      const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' })
+        .catch((e) => {
+          console.error(e.message)
+          return
+        })
+      if (!accounts) { return }
+
+      window.userWalletAddress = accounts[0]
+      userWallet.innerText = window.userWalletAddress
+      loginButton.innerText = 'connected'
+
+      loginButton.removeEventListener('click', loginWithMetaMask)
+      
+    }
+    window.addEventListener('DOMContentLoaded', () => {
+      toggleButton()
+    });
+  </script>
+
+			</div>
+		</section>
+
+	</main>
+{% endblock %}
+

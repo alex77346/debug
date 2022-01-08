@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+	<title>Squid Games Online - {% block title %}Home{% endblock %}</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="robots" content="noindex, nofollow">
+	<meta property="og:title" content="">
+	<meta property="og:description" content="">
+	<meta property="og:type" content="website">
+	<meta property="og:image" content="">
+	<meta property="og:site_name" content="">
+	<meta property="og:url" content="">
+	<meta name="description" content="">
+	<link rel="icon" href="favicon.ico" type="image/x-icon">
+	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+	<link rel="stylesheet" href="./static/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="./static/css/custom.css" />
+
+</head>
+
+<body>
+
+
+	<header class="header-home">
+		<div style="display: flex; width: 200px; height: 70px;">
+			<img src="./static/img/2.png" alt="">
+			<img src="./static/img/0.png" alt="">
+			<img src="./static/img/0.png" alt="">
+			<img src="./static/img/0.png" alt="">
+		</div>
+		<div class="container">
+			<div class="header-top">
+				<ul class="menu">
+					<li><a href="/">Home</a></li>
+					<li><a href="/see_players">Players</a></li>
+					<li><a href="/games">Games</a></li>
+					<li><a href="/prize">Prize</a></li>
+                    
+                    <li id="con"><a href="/connect">Connect wallet</a></li>
+					<img onclick="info()" id="image" style="width: 55px; height: 50px; display: none; border-radius: 50px;" src="./static/img/ico 1.png" alt="">
+					<div id="info" style="width: 350px; height: 130px; display: none; border: 1px solid black;">
+						<p>адрес кошелька :</p>
+						<p id="name_wallet"></p>
+						<p onclick="exit()" style="border: 1px solid black; padding: 10px;">выйти из аккаунта</p>
+				</ul>
+			</div>
+        	{% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+
+                    {% for category, message in messages %}
+                        {% if category == 'error' %}
+                            <div class="alert alert-danger alter-dismissable fade show" role="alert">
+                                {{ message }}
+                                <button type='button' class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+
+                        {% else %}
+                            <div class="alert alert-success alter-dismissable fade show" role="alert">
+                                {{ message }}
+                                <button type='button' class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+
+                {% endif %}
+            {% endwith %}
+
+{% block header %}{% endblock %}
+<script>
+	var con = document.getElementById("con");
+	var image = document.getElementById("image");
+	var acc = null;
+
+	window.userWalletAddress = null
+function toggleButton() {
+
+con.addEventListener('click', loginWithMetaMask)
+}
+async function loginWithMetaMask(event) {
+	event.preventDefault()
+const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' })
+	.catch((e) => {
+	console.error(e.message)
+	return
+	})
+if (!accounts) { return }
+con.style.display = "none";
+image.style.display = "block";
+acc = accounts[0];
+} 
+window.addEventListener('DOMContentLoaded', () => {
+toggleButton()
+});
+
+
+var q = false;	
+
+function info() {
+	var window = document.getElementById("info");
+		var wallet = document.getElementById("name_wallet");
+		if(q == false) {
+		window.style.display = "block";
+			wallet.innerHTML = acc;
+			
+		q = true;
+		} else {
+			window.style.display = "none";
+			q = false;
+		}
+				}
+
+			function exit(){
+						document.location.href = "/";
+
+			}
+</script>
+    </header>
+
+
+{% block content %}{% endblock %}
+
+<script src="./static/js/jquery-3.2.1.min.js"></script>
+<script src="./static/js/bootstrap.min.js"></script>
+</body>
+</html>

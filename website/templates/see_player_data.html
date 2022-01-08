@@ -1,0 +1,55 @@
+{% extends "base.html" %} {% block title %}Player Data{% endblock %} {% block header %}
+<main>
+	<section class="edit-section">
+		<div class="container container-large">
+			<div class="edit-wrapper">
+				<div class="edit-l">
+					<div class="edit-l-top">
+						<img src={{pic}} alt="">
+                    </div>
+                    <div class="edit-l-bottom">
+                        <img src="./static/images/img-3.png" alt="">
+                        <img src="./static/images/img-4.png" alt="">
+                        <img src="./static/images/img-5.png" alt="">
+
+                    </div>
+                </div>
+                <form method="POST" class="edit-r">
+                    <h3>Player {{number}}</h3>
+                    
+                    <div class="input-block">
+                        <label for="email">Email</label>
+                        <text>{{email}}</text>
+                        <br></br>
+                    </div>
+
+                    <div class="input-block">
+                        <label for="twitter">Twitter</label>
+                        <text>{{twitter}}</text>
+                        <br></br>
+                    </div>
+
+                    <div class="input-block">
+                        <label for="telegram">Telegram</label>
+                        <text>{{telegram}}</text>
+                        <br></br>
+                    </div>
+
+                    <div class="input-block">
+                        <label for="facebook">Facebook</label>
+                        <text>{{facebook}}</text>
+                        <br></br>
+                    </div>
+
+                    <div class="input-block">
+                        <label for="wallet_adress">Wallet Address</label>
+                        <text>{{wallet_address}}</text>
+                        <br></br>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </section>
+</main>
+{% endblock %}
